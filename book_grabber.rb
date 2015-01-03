@@ -13,10 +13,10 @@ class BookGrabber
       id = book.at_xpath("book/id").text.to_i
 
       # I think this will only ever return one author...
-      author = book.at_xpath("book/authors/author/name").text
+      authors = book.xpath("book/authors/author/name").map {|a| a.text }
       date = Chronic.parse(book.at_xpath("date_added").text)
 
-      puts Book.factory(id, title, author, date)
+      puts Book.factory(id, title, authors, date)
     end
   end
 end
