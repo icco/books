@@ -1,5 +1,5 @@
 require "open-uri"
-require "oga"
+require "nokogiri"
 
 class BookGrabber
   def self.to_read(user_id = 12680)
@@ -10,7 +10,7 @@ class BookGrabber
       body = file.read
       p body
       p file.meta
-      document = Oga.parse_html(body)
+      document = Nokogiri::XML(body)
       p document
     end
   end
