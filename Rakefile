@@ -1,5 +1,5 @@
-
 require './book_grabber.rb'
+require './book.rb'
 
 desc "Just for shits."
 task :work do
