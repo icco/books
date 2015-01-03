@@ -9,5 +9,6 @@ class BookGrabber
     document = Nokogiri::XML(uri.read.split("\n").map {|l| l.strip }.join '')
     titles = document.xpath("//book/title").map {|t| t.content }
     ids = document.xpath("//book/id").map {|t| t.content }
+    p ids.zip(titles)
   end
 end
