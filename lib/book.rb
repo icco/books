@@ -2,8 +2,8 @@ require "nokogiri"
 require "open-uri"
 
 class Book < ActiveRecord::Base
-  has_many :authors
-  has_many :genres
+  has_and_belongs_to_many :authors
+  has_and_belongs_to_many :genres
   validates :title, :presence => true
 
   def self.factory(id, title, authors, date)
