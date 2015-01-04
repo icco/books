@@ -1,8 +1,10 @@
 require "sinatra/base"
 require "sinatra/activerecord"
+require "./sass_initializer"
 
 class Books < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+  register SassInitializer
 
   configure do
     # Common Configs
