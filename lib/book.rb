@@ -29,7 +29,7 @@ class Book < ActiveRecord::Base
     uri = URI.parse url
     document = Nokogiri::XML(uri.read.split("\n").map {|l| l.strip }.join '')
 
-    self.genres = document.xpath("//shelf/@name").map {|g| g.value }.delete_if {|g| /read|fav|kindle|book-club|club|series|school/.match g }.map do |g|
+    self.genres = document.xpath("//shelf/@name").map {|g| g.value }.delete_if {|g| /read|fav|kindle|book-club|club|series|school/.match g }.uniq.map do |g|
       Genre.where(name: g).first_or_create
     end
     self.image_url = document.at_xpath("//image_url").text
