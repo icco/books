@@ -1,6 +1,8 @@
 require "sinatra/base"
 require "sinatra/activerecord"
-require "./sass_initializer"
+
+# Require the whole lib/ folder.
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 
 class Books < Sinatra::Base
   register Sinatra::ActiveRecordExtension

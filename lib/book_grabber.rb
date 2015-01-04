@@ -2,8 +2,6 @@ require "chronic"
 require "nokogiri"
 require "open-uri"
 
-require "./book"
-
 class BookGrabber
   def self.to_read(user_id = 12680)
     # https://www.goodreads.com/api#reviews.list
