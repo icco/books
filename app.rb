@@ -13,6 +13,11 @@ class Books < Sinatra::Base
     set :logging, true
     set :sessions, true
 
+    ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
+    if !settings.environment.eql? :production
+      ActiveRecord::Base.logger.level = 0
+    end
+
     # Database configuration
     connections = {
       :development => "postgres://localhost/books",
