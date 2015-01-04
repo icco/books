@@ -1,3 +1,6 @@
+require "nokogiri"
+require "open-uri"
+
 class Book
   attr_accessor :id, :title, :author, :date
 

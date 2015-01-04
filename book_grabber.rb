@@ -1,6 +1,8 @@
-require "open-uri"
-require "nokogiri"
 require "chronic"
+require "nokogiri"
+require "open-uri"
+
+require "./book"
 
 class BookGrabber
   def self.to_read(user_id = 12680)
