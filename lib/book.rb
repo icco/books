@@ -14,8 +14,8 @@ class Book < ActiveRecord::Base
 
     # Author and Genre creation need to happen after the book is created.
     b.fetch_data
-    authors.each do |a|
-      b.authors = b.authors << Author.where({:name => a}).first_or_create
+    b.authors = authors.sort.uniq.map do |a|
+      Author.where({:name => a}).first_or_create
     end
     b.save
 
