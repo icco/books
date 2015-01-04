@@ -52,6 +52,11 @@ class Books < Sinatra::Base
     end
   end
 
+  get "/" do
+    @books = Book.where("pub_date < ?", Time.now)
+    erb :index
+  end
+
   get "/config" do
     settings.database.inspect
   end
