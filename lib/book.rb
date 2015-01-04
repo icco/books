@@ -10,11 +10,14 @@ class Book < ActiveRecord::Base
     b = Book.where(id: id).first_or_create do |b|
       b.title = title
       b.date_added = date
-      b.authors = authors.map do |a|
-        Author.where(name: a).first_or_create
-      end
-      b.fetch_data
     end
+
+    # Author and Genre creation need to happen after the book is created.
+    b.fetch_data
+    authors.each do |a|
+      b.authors = b.authors << Author.where({:name => a}).first_or_create
+    end
+    b.save
 
     return b
   end
@@ -45,6 +48,6 @@ class Book < ActiveRecord::Base
   end
 
   def to_s
-    "#{id}: #{title.inspect} by #{authors} (added #{date})\n\tGenres: #{genres}\n\tImage: #{image_url}\n\tPublication Date: #{pub_date}"
+    "#{id}: #{title.inspect} by #{authors.to_a} (added #{date_added})\n\tGenres: #{genres.to_a}\n\tImage: #{image_url}\n\tPublication Date: #{pub_date}"
   end
 end
