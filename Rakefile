@@ -1,6 +1,5 @@
 require "sinatra/activerecord/rake"
 require "./app"
-require "./book_grabber.rb"
 
 desc "Just for shits."
 task :work do
