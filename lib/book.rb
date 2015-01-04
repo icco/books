@@ -48,6 +48,6 @@ class Book < ActiveRecord::Base
   end
 
   def to_s
-    "#{id}: #{title.inspect} by #{authors.to_a} (added #{date_added})\n\tGenres: #{genres.to_a}\n\tImage: #{image_url}\n\tPublication Date: #{pub_date}"
+    "#{id}: #{title.inspect} by #{authors.to_a.map {|a| a.name }} (added #{date_added})\n\tGenres: #{genres.to_a.map {|g| g.name }}\n\tImage: #{image_url}\n\tPublication Date: #{pub_date}"
   end
 end
