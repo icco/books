@@ -12,6 +12,7 @@ class Books < Sinatra::Base
     # Common Configs
     set :logging, true
     set :sessions, true
+    set :session_secret, ENV['SESSION_SECRET'] || 'blargh'
 
     ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
     if !settings.environment.eql? :production
