@@ -10,3 +10,9 @@ gem 'sass'
 gem 'sinatra'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'thin'
+
+# For dev
+group :development do
+  gem 'heroku'
+  gem 'shotgun'
+end

@@ -14,23 +14,45 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (6.0.0)
     builder (3.2.2)
     chronic (0.10.2)
     daemons (1.1.9)
     eventmachine (1.0.4)
+    excon (0.43.0)
+    heroku (3.22.1)
+      heroku-api (~> 0.3.19)
+      launchy (>= 0.3.2)
+      multi_json (~> 1.10.1)
+      netrc (>= 0.10.0)
+      rest-client (= 1.6.7)
+      rubyzip (= 0.9.9)
+    heroku-api (0.3.22)
+      excon (~> 0.38)
+      multi_json (~> 1.8)
     i18n (0.7.0)
-    json (1.8.1)
+    json (1.8.2)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.5.0)
+    minitest (5.5.1)
+    multi_json (1.10.1)
+    netrc (0.10.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
-    pg (0.18.0)
+    pg (0.18.1)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
     rake (10.4.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (0.9.9)
     sass (3.4.9)
+    shotgun (0.9)
+      rack (>= 1.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -52,10 +74,12 @@ PLATFORMS
 
 DEPENDENCIES
   chronic
+  heroku
   nokogiri
   pg
   rake
   sass
+  shotgun
   sinatra
   sinatra-activerecord
   thin

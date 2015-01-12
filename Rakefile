@@ -11,3 +11,8 @@ task :secret do
   require 'securerandom'
   puts SecureRandom.hex(64)
 end
+
+desc "Run a local server."
+task :local do
+  Kernel.exec("shotgun -s thin -p 9393")
+end
