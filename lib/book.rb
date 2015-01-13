@@ -38,9 +38,12 @@ class Book < ActiveRecord::Base
     # pub date is just a year.
     begin
       year = document.at_xpath("//book/publication_year").text.to_i
-      day = document.at_xpath("//book/publication_day").text.to_i
-      month = document.at_xpath("//book/publication_month").text.to_i
-      self.pub_date = Date.new(year,month,day)
+      day = document.at_xpath("//book/publication_day").text.to_i || 1
+      month = document.at_xpath("//book/publication_month").text.to_i || 1
+
+      if year
+        self.pub_date = Date.new(year,month,day)
+      end
     rescue
       puts "#{year}-#{month}-#{day} is not a valid pub date."
       self.pub_date = nil
