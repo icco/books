@@ -54,7 +54,8 @@ class Books < Sinatra::Base
 
   get "/" do
     @genres = Genre.where("name like '%graphic%'")
-    @books = Book.includes(:genres).where("pub_date < ?", Time.now).where(genes: @genres)
+    @books = Book.where("pub_date < ?", Time.now).to_a
+    @books = @books.delete_if {|book| (book.genres - @genres) == book.genres }
     erb :index
   end
 
