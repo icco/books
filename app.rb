@@ -14,6 +14,8 @@ class Books < Sinatra::Base
     set :sessions, true
     set :session_secret, ENV['SESSION_SECRET'] || 'blargh'
 
+    use ActiveRecord::QueryCache
+
     ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
     if !settings.environment.eql? :production
       ActiveRecord::Base.logger.level = 0
@@ -25,8 +27,10 @@ class Books < Sinatra::Base
       :test => "postgres://postgres@localhost/books_test",
       :production => ENV["DATABASE_URL"]
     }
-    if connections[settings.environment]
-      url = URI(connections[settings.environment])
+
+    active_record = {}
+    connections.delete_if {|k,v| !k or !v }.each_pair do |k, v|
+      url = URI(v)
       options = {
         :adapter => url.scheme,
         :host => url.host,
@@ -45,11 +49,10 @@ class Books < Sinatra::Base
         options[:adapter] = "postgresql"
       end
 
-      #logger.devel "DB: #{options.inspect}"
-      set :database, options
-    else
-      #logger.fatal "No database configuration for #{settings.environment.inspect}"
+      active_record[k] = options
     end
+
+    set :database, active_record
   end
 
   get "/" do
