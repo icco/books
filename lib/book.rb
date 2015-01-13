@@ -6,11 +6,13 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :genres
   validates :title, :presence => true
 
-  def self.factory(id, title, authors, date)
+  def self.factory(id, title, authors, date, shelf)
     b = Book.where(id: id).first_or_create do |b|
       b.title = title
-      b.date_added = date
     end
+
+    b.date_added = date
+    b.shelf = shelf
 
     # Author and Genre creation need to happen after the book is created.
     b.fetch_data
