@@ -53,9 +53,10 @@ class Books < Sinatra::Base
   end
 
   get "/" do
-    @genres = Genre.where("name like '%graphic%'")
+    @genres = Genre.where("name LIKE '%comic%' OR name LIKE '%graphic%'")
     @books = Book.where("pub_date < ?", Time.now).where(shelf: "to-read").to_a
     @books = @books.delete_if {|book| book.genres.where(id: @genres).empty? }
+
     erb :index
   end
 
