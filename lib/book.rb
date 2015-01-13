@@ -38,10 +38,12 @@ class Book < ActiveRecord::Base
     # pub date is just a year.
     begin
       year = document.at_xpath("//book/publication_year").text.to_i
-      day = document.at_xpath("//book/publication_day").text.to_i || 1
-      month = document.at_xpath("//book/publication_month").text.to_i || 1
+      day = document.at_xpath("//book/publication_day").text.to_i
+      month = document.at_xpath("//book/publication_month").text.to_i
 
       if year
+        day = [day, 1].max
+        month = [month, 1].max
         self.pub_date = Date.new(year,month,day)
       end
     rescue
