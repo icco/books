@@ -41,10 +41,12 @@ class Book < ActiveRecord::Base
       day = document.at_xpath("//book/publication_day").text.to_i
       month = document.at_xpath("//book/publication_month").text.to_i
 
-      if year
+      if year > 1000
         day = [day, 1].max
         month = [month, 1].max
         self.pub_date = Date.new(year,month,day)
+      else
+        self.pub_date = nil
       end
     rescue
       puts "#{year}-#{month}-#{day} is not a valid pub date."
