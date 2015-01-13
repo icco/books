@@ -53,7 +53,8 @@ class Books < Sinatra::Base
   end
 
   get "/" do
-    @books = Book.where("pub_date < ?", Time.now)
+    @genres = Genre.where("name like '%graphic%'")
+    @books = Book.includes(:genres).where("pub_date < ?", Time.now).where(genes: @genres)
     erb :index
   end
 
