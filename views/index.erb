@@ -1,6 +1,14 @@
-<h1>Published Graphic Novels To Read</h1>
-<ul>
-  <% @books.each do |b| %>
-    <li><a href="https://www.goodreads.com/book/show/<%= b.id %>">&quot;<%= b.title %>&quot;</a></li>
-  <% end %>
-</ul>
+<!doctype html>
+<html>
+  <head>
+    <title>Nat's To Read</title>
+  </head>
+  <body>
+    <h1>Published Graphic Novels To Read</h1>
+    <ul>
+      <% @books.each do |b| %>
+        <li><a href="https://www.goodreads.com/book/show/<%= b.id %>">&quot;<%= b.title %>&quot;</a></li>
+      <% end %>
+    </ul>
+  </body>
+</html>
