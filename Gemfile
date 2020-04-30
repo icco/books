@@ -8,7 +8,7 @@ gem 'pg'
 gem 'rake'
 gem 'sass'
 gem 'sinatra'
-gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'sinatra-activerecord', '>= 2.0.5'
 gem 'thin'
 
 # For dev
