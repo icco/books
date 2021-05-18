@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 
 gem 'chronic'
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.11.4'
 gem 'pg'
 gem 'rake'
 gem 'sass'
